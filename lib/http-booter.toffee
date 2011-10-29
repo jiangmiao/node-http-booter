@@ -1,0 +1,85 @@
+{HttpBooter} = require __dirname + '/../build/default/http-booter'
+http = require :http
+net  = require :net
+
+i = HttpBooter
+class HttpBooter
+  constructor: ->
+    @internal = new i()
+
+  sync: (req) ->
+    @internal.write("#{req.method} #{req.url} HTTP/1.1\r\n")
+    @internal.write("Cookie: #{v}\r\n")         if v = req.headers.cookie
+    @internal.write("Content-Length: #{v}\r\n") if v = req.headers[:content-length]
+    @internal.write("Content-Type: #{v}\r\n")   if v = req.headers[:content-type]
+    @internal.write("\r\n")
+
+  succeeded: ->
+    @internal.succeeded()
+
+  format: ->
+    @get    = @internal._get
+    @post   = @internal._post
+    @cookie = @internal._cookie
+    @files  = @internal._files
+    # @headers = @internal._headers
+    #  @url    = @internal.url
+
+  write: (data) ->
+    @internal.write data
+
+  close: ->
+    if @internal
+      @internal.close()
+      delete @internal
+
+  bad: ->
+    @internal.bad()
+
+  @sync: (req) ->
+    hb = new HttpBooter()
+    hb.sync req
+    hb
+
+  # createServer(Function(req, res)) ->
+  @createServer: (callback) ->
+    server = http.createServer (req, res) ->
+      hb = HttpBooter.sync req
+      req.hb = hb
+      req.on :data, (data) =>
+        hb.internal.write(data)
+
+      req.on :end, =>
+        if hb.succeeded()
+          hb.format()
+          hb.close()
+          callback req, res, hb
+        else
+          hb.end()
+          res.end :error
+
+  # createSocket
+  @createSocket: (callback) ->
+    server = net.createServer (socket) ->
+      hb = new HttpBooter()
+      socket.on :data, (data) ->
+        hb.write data
+        if hb.succeeded()
+          hb.format()
+          callback(socket, hb)
+        else if hb.bad()
+          hb.close()
+          socket.end()
+
+      socket.on :timeout, ->
+
+      socket.on :close, ->
+        hb.close()
+
+      socket.on :end, ->
+
+      socket.on :error, ->
+
+    server
+
+exports.HttpBooter = HttpBooter

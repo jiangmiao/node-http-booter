@@ -1,0 +1,8 @@
+{HttpBooter} = require __dirname + '/../'
+util         = require :util
+fs           = require :fs
+
+server = HttpBooter.createServer (req, res, hb) ->
+  res.end fs.readFileSync(__dirname + "/upload.html", 'utf-8') + "<pre>#{util.inspect(hb)}</pre>"
+
+server.listen 1337

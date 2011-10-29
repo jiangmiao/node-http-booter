@@ -1,0 +1,7 @@
+http = require :http
+util = require :util
+
+server = http.createServer (req, res, hb) ->
+  res.end :hello
+
+server.listen 1338

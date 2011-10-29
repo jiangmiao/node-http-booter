@@ -1,0 +1,10 @@
+fs         = require :fs
+{HttpBooter} = require '../index'
+util = require :util
+
+fs.writeFileSync :pid, process.pid.toString(),  'utf-8'
+server = HttpBooter.createServer (req, res, hb) ->
+  res.end util.inspect hb
+
+server.listen 1337
+

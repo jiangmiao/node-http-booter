@@ -1,0 +1,16 @@
+{ "name": "http-booter",
+  "version": "0.1.0",
+  "description": "http-booter",
+  "keywords" : ["http-booter", "http", "booter", "multipart"],
+  "homepage": "http://github.com/jiangmiao/node-http-booter",
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/jiangmiao/node-http-booter.git"
+  },
+  "author" : "Jiang Miao <jiangfriend@gmail.com>",
+  "main" : "./lib",
+  "scripts" : { 
+    "install" : "node-waf configure build || true"
+  },
+  "engines" : { "node": ">= 0.4.0" }
+}

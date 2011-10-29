@@ -1,0 +1,7 @@
+*.js
+*.o
+*.sw*
+*.tgz
+raw
+build
+.lock-wscript

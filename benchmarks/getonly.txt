@@ -1,0 +1,5 @@
+GET /?a=%E4%BD%A0%E5%A5%BD&b=%E4%B8%96%E7%95%8C HTTP/1.1
+User-Agent: curl/7.22.0 (i686-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.0e zlib/1.2.5 libssh2/1.3.0
+Host: 127.0.0.1:1337
+Accept: */*
+

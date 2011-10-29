@@ -1,0 +1,7 @@
+{HttpBooter} = require __dirname + '/../'
+util         = require :util
+
+server = HttpBooter.createServer (req, res, hb) ->
+  res.end :hello
+
+server.listen 1337

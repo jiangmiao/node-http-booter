@@ -21,6 +21,11 @@ or
 
     node-waf configure build
 
+quick preview upload file
+
+    node examples/upload.js
+    # open 127.0.0.1:1337/?hello=world and upload a small file
+
 Usage
 =====
 

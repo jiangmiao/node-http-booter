@@ -3,4 +3,6 @@
 *.tgz
 raw
 build
+out
 .lock-wscript
+pid

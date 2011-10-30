@@ -16,13 +16,13 @@ env.Library("out/http-booter", [
 ])
 
 env.Program("out/test-http", [
-  "out/test/test-http.cc"
+  "out/test/http.cc"
 ]);
 
 env.Program("out/test-http-booter", [
-  "out/test/test-http-booter.cc"
+  "out/test/http-booter.cc"
 ]);
 
-env.Program("out/benchmark", [
-  "out/benchmarks/benchmark.cc",
+env.Program("out/benchmark-raw", [
+  "out/benchmarks/raw.cc",
 ])

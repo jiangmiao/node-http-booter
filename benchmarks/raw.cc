@@ -12,7 +12,7 @@ using namespace hb;
 int main()
 {
 	// start
-	const char *files[] = {"../benchmarks/postdata.txt", "../benchmarks/multipart.txt", "../benchmarks/getonly.txt"};
+	const char *files[] = {"benchmarks/postdata.txt", "benchmarks/multipart.txt", "benchmarks/getonly.txt"};
 	for(auto & file_name : files) 
 	{
 		puts(file_name);

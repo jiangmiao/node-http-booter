@@ -8,7 +8,7 @@ Features
 
 1. High Performance
 
-    The http parse and analyze is written in C++0x
+    The http parser and analyze is written in C++0x
 
 2. Easy to use
 
@@ -16,6 +16,10 @@ Installation
 ============
 
     npm install http-booter
+
+or
+
+    node-waf configure build
 
 Usage
 =====
@@ -36,7 +40,6 @@ Basic Usage
     });
 
     server.listen(1337);
-
 
 very similar http.createServer but the instance is created by HttpBooter and has an addition variable hb, hb will contains extracted get post cookie and files.
 
@@ -65,10 +68,8 @@ Test cookie and multipart upload
           { filename: 'index.js',
             data: <SlowBuffer 6d 6f 64 75 6c 65 2e 65 78 70 6f 72 74 73 20 3d 20 72 65 71 75 69 72 65 28 27 2e 2f 6c 69 62 2f 68 74 74 70 2d 62 6f 6f 74 65 72 27 29 3b 0a> } } }
 
-Advance Usage
+Advanced Usage
 -------------
 
 Performance
 ===========
-
-

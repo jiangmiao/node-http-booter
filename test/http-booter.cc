@@ -6,23 +6,23 @@ using namespace hb;
 int main()
 {
 	{
-		HttpBooter http;
-		http.write("GET / HTTP/1.1\r\n\r\n");
-		assert(http.succeeded());
-		assert(http.method_id ==  HttpBooter::METHOD_GET);
-		assert(http.http_version == "1.1");
-		assert(http.request_uri == "/" );
+		HttpBooter hb;
+		hb.write("GET / HTTP/1.1\r\n\r\n");
+		assert(hb.succeeded());
+		assert(hb.method_id ==  HttpBooter::METHOD_GET);
+		assert(hb.http_version == "1.1");
+		assert(hb.request_uri == "/" );
 	}
 
 	{
-		HttpBooter http;
-		http.write("GET /?a=hello+%E4%BD%A0%E5%A5%BD&b=world HTTP/1.1\r\n\r\n");
-		assert(http.succeeded());
-		assert(http.method_id ==  HttpBooter::METHOD_GET);
-		assert(http.http_version == "1.1");
-		assert(http.get.size() == 2);
-		assert(http.get[0].first == "a");
-		assert(http.get[0].second == "hello 你好");
+		HttpBooter hb;
+		hb.write("GET /?a=hello+%E4%BD%A0%E5%A5%BD&b=world HTTP/1.1\r\n\r\n");
+		assert(hb.succeeded());
+		assert(hb.method_id ==  HttpBooter::METHOD_GET);
+		assert(hb.http_version == "1.1");
+		assert(hb.get.size() == 2);
+		assert(hb.get[0].first == "a");
+		assert(hb.get[0].second == "hello 你好");
 	}
 
 	{
@@ -35,15 +35,15 @@ int main()
 		              "\r\n"
 		              "a=%E4%BD%A0%E5%A5%BD&b=%E4%B8%96%E7%95%8C";
 
-		HttpBooter http;
-		http.write(data);
-		assert(http.succeeded());
-		assert(http.get.size() == 2);
-		assert(http.get[0].first == "a");
-		assert(http.get[0].second == "你好");
-		assert(http.post.size() == 2);
-		assert(http.post[0].first == "a");
-		assert(http.post[0].second == "你好");
+		HttpBooter hb;
+		hb.write(data);
+		assert(hb.succeeded());
+		assert(hb.get.size() == 2);
+		assert(hb.get[0].first == "a");
+		assert(hb.get[0].second == "你好");
+		assert(hb.post.size() == 2);
+		assert(hb.post[0].first == "a");
+		assert(hb.post[0].second == "你好");
 	}
 
 	{
@@ -72,10 +72,10 @@ int main()
 		              "baz\r\n"
 		              "------------------------------3d684f973b22--\r\n";
 
-		HttpBooter http;
-		http.write(data);
-		assert(http.succeeded());
-		http.dump();
+		HttpBooter hb;
+		hb.write(data);
+		assert(hb.succeeded());
+		hb.dump();
 	}
 	return 0;
 }
